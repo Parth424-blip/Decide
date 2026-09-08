@@ -5,13 +5,24 @@ import { Restaurant } from "@/lib/types";
 
 type SwipeCardProps = {
   restaurant: Restaurant;
+  onSwipe: (direction: "left" | "right") => void;
 };
 
-export const SwipeCard = ({ restaurant }: SwipeCardProps) => {
+export const SwipeCard = ({ restaurant, onSwipe }: SwipeCardProps) => {
   return (
     <motion.div
       drag="x"
       className="w-full max-w-xs rounded-2xl border border-neutral-800 overflow-hidden bg-neutral-900"
+      onDragEnd={(event, info) => {
+        if (info.offset.x > 100) {
+          onSwipe("right");
+        } else if (info.offset.x < -100) {
+          onSwipe("left");
+        } else {
+          console.log("not far enough");
+        }
+      }}
+      dragConstraints={{ left: 0, right: 0 }}
     >
       <img
         src={restaurant.imageUrl}
