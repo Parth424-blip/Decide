@@ -8,7 +8,7 @@ export default function Home() {
       <h1 className="text-2xl font-semibold mb-2">Decide</h1>
 
       <p className="text-sm text-neutral-400 text-center mb-8">
-        Swipe with friends, find what you all agree on
+        Swipe with friends, find what you
       </p>
 
       <div className="w-full max-w-xs flex flex-col gap-3">

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Restaurant } from "@/libs/types";
+import { Restaurant } from "@/lib/types";
 
 type SwipeCardProps = {
   restaurant: Restaurant;
