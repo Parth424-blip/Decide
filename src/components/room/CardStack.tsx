@@ -9,7 +9,9 @@ export const CardStack = () => {
   return (
     <SwipeCard
       restaurant={mockRestaurants[currentIndex]}
-      onSwipe={(direction) => console.log("CardStack received:", direction)}
+      onSwipe={(direction) => {
+        setCurrentIndex(currentIndex + 1);
+      }}
     />
   );
 };
