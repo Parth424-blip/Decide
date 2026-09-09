@@ -6,12 +6,13 @@ import { Restaurant } from "@/lib/types";
 type SwipeCardProps = {
   restaurant: Restaurant;
   onSwipe: (direction: "left" | "right") => void;
+  isTop: boolean;
 };
 
-export const SwipeCard = ({ restaurant, onSwipe }: SwipeCardProps) => {
+export const SwipeCard = ({ restaurant, onSwipe, isTop }: SwipeCardProps) => {
   return (
     <motion.div
-      drag="x"
+      drag={isTop ? "x" : false}
       className="w-full max-w-xs rounded-2xl border border-neutral-800 overflow-hidden bg-neutral-900"
       onDragEnd={(event, info) => {
         if (info.offset.x > 100) {

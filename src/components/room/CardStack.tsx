@@ -11,10 +11,11 @@ export const CardStack = () => {
   return (
     <div>
       <p>{visibleCards.length}</p>
-      {visibleCards.map((restaurant) => (
+      {visibleCards.map((restaurant, index) => (
         <SwipeCard
           key={restaurant.id}
           restaurant={restaurant}
+          isTop={index === 0}
           onSwipe={(direction) => {
             setCurrentIndex(currentIndex + 1);
           }}
