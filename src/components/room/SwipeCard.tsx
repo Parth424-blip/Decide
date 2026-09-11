@@ -7,13 +7,24 @@ type SwipeCardProps = {
   restaurant: Restaurant;
   onSwipe: (direction: "left" | "right") => void;
   isTop: boolean;
+  index: number;
 };
 
-export const SwipeCard = ({ restaurant, onSwipe, isTop }: SwipeCardProps) => {
+export const SwipeCard = ({
+  restaurant,
+  onSwipe,
+  isTop,
+  index,
+}: SwipeCardProps) => {
   return (
     <motion.div
+      style={{
+        scale: 1 - index * 0.06,
+        y: index * 20,
+        zIndex: 3 - index,
+      }}
       drag={isTop ? "x" : false}
-      className="w-full max-w-xs rounded-2xl border border-neutral-800 overflow-hidden bg-neutral-900"
+      className="w-full max-w-xs rounded-2xl border border-neutral-800 overflow-hidden bg-neutral-900 absolute top-0 left-0"
       onDragEnd={(event, info) => {
         if (info.offset.x > 100) {
           onSwipe("right");

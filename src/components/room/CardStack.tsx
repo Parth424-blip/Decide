@@ -9,13 +9,14 @@ export const CardStack = () => {
   const visibleCards = mockRestaurants.slice(currentIndex, currentIndex + 3);
 
   return (
-    <div>
+    <div className="relative h-[500px] max-w-xs w-full mx-auto">
       <p>{visibleCards.length}</p>
       {visibleCards.map((restaurant, index) => (
         <SwipeCard
           key={restaurant.id}
           restaurant={restaurant}
           isTop={index === 0}
+          index={index}
           onSwipe={(direction) => {
             setCurrentIndex(currentIndex + 1);
           }}
