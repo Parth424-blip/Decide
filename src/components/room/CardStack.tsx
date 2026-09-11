@@ -1,5 +1,5 @@
 "use client";
-import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { mockRestaurants } from "@/lib/mockData";
 import { SwipeCard } from "./SwipeCard";
@@ -10,18 +10,19 @@ export const CardStack = () => {
 
   return (
     <div className="relative h-[500px] max-w-xs w-full mx-auto">
-      <p>{visibleCards.length}</p>
-      {visibleCards.map((restaurant, index) => (
-        <SwipeCard
-          key={restaurant.id}
-          restaurant={restaurant}
-          isTop={index === 0}
-          index={index}
-          onSwipe={(direction) => {
-            setCurrentIndex(currentIndex + 1);
-          }}
-        />
-      ))}
+      <AnimatePresence>
+        {visibleCards.map((restaurant, index) => (
+          <SwipeCard
+            key={restaurant.id}
+            restaurant={restaurant}
+            isTop={index === 0}
+            index={index}
+            onSwipe={(direction) => {
+              setCurrentIndex(currentIndex + 1);
+            }}
+          />
+        ))}
+      </AnimatePresence>
     </div>
   );
 };

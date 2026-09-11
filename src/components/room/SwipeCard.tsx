@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Restaurant } from "@/lib/types";
+import { useState } from "react";
 
 type SwipeCardProps = {
   restaurant: Restaurant;
@@ -16,8 +17,11 @@ export const SwipeCard = ({
   isTop,
   index,
 }: SwipeCardProps) => {
+  const [exitX, setExitX] = useState(0);
+
   return (
     <motion.div
+      exit={{ x: exitX, opacity: 0 }}
       style={{
         scale: 1 - index * 0.06,
         y: index * 20,
@@ -27,8 +31,10 @@ export const SwipeCard = ({
       className="w-full max-w-xs rounded-2xl border border-neutral-800 overflow-hidden bg-neutral-900 absolute top-0 left-0"
       onDragEnd={(event, info) => {
         if (info.offset.x > 100) {
+          setExitX(500);
           onSwipe("right");
         } else if (info.offset.x < -100) {
+          setExitX(-500);
           onSwipe("left");
         } else {
           console.log("not far enough");
