@@ -1,4 +1,14 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function Home() {
+  const router = useRouter();
+
+  function generateCode() {
+    return Math.random().toString(36).substring(2, 8).toUpperCase();
+  }
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6">
       <div className="w-14 h-14 rounded-2xl bg-neutral-800 flex items-center justify-center mb-5">
@@ -12,7 +22,13 @@ export default function Home() {
       </p>
 
       <div className="w-full max-w-xs flex flex-col gap-3">
-        <button className="h-11 rounded-lg bg-white text-black text-sm font-medium">
+        <button
+          className="h-11 rounded-lg bg-white text-black text-sm font-medium"
+          onClick={() => {
+            const code = generateCode();
+            router.push(`/room/${code}`);
+          }}
+        >
           Create a room
         </button>
 
